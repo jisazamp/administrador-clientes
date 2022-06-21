@@ -21,4 +21,12 @@ body {
   .nav-link__active {
     @apply text-[#adc2ff] font-semibold
   }
+
+  .input-label {
+    @apply md:w-3/4 block mx-auto text-gray-800
+  }
+
+  .input-field {
+    @apply block w-full md:w-3/4 p-3 bg-[#e5ecff] rounded-md mx-auto
+  }
 }

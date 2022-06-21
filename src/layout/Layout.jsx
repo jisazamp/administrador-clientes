@@ -29,7 +29,7 @@ const Layout = () => {
           </Link>
         </nav>
       </div>
-      <div className='md:w-3/4'>
+      <div className='md:w-3/4 p-10 bg-[#f5f7ff] md:h-screen overflow-scroll'>
         <Outlet />
       </div>
     </div>
