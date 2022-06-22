@@ -28,7 +28,27 @@ const Home = () => {
     return null;
   }
 
-  return <div></div>;
+  return (
+    <div>
+      <h1 className=' font-black text-4xl text-[#3829e0]'>Clientes</h1>
+      <p className='mt-3'>Gestione y administre sus clientes</p>
+      <table className='w-full mt-5 table-auto shadow bg-white'>
+        <thead className='text-white bg-blue-900'>
+          <tr>
+            <th className='p-2'>Nombre</th>
+            <th className='p-2'>Contacto</th>
+            <th className='p-2'>Empresa</th>
+            <th className='p-2'>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {clients.map((client) => (
+            <Client key={client.id} client={client} />
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default Home;
