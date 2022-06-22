@@ -4,7 +4,7 @@
       "username": "Juan Isaza",
       "company": "UPB",
       "email": "juan@mail.com",
-      "phone": "1112233",
+      "phone": "3100000000",
       "notes": "Este es el primer registro",
       "id": 1
     },
@@ -12,7 +12,7 @@
       "username": "Otro Isaza",
       "company": "UPB",
       "email": "juan@mail.com",
-      "phone": "111222333",
+      "phone": "3100000001",
       "notes": "Bueno, este es para comprobar que el server se reinicia",
       "id": 2
     },
@@ -20,9 +20,17 @@
       "username": "Salchipapa 2",
       "company": "UPB",
       "email": "salchipapa@papas.com",
-      "phone": "123124",
+      "phone": "3100000002",
       "notes": "",
       "id": 3
+    },
+    {
+      "username": "UPB",
+      "company": "Selenium",
+      "email": "upb@upb.edu.co",
+      "phone": "3123124589",
+      "notes": "Universidad\n",
+      "id": 4
     }
   ]
 }
