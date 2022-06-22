@@ -19,7 +19,7 @@ const Form = () => {
   });
 
   return (
-    <div className='mt-10 px-5 py-10 rounded-md shadow-md md:w-3/4 mx-auto'>
+    <div className='mt-10 px-5 py-10 rounded-md shadow-lg border md:w-3/4 mx-auto'>
       <h1 className='text-gray-600 font-bold text-xl uppercase text-center'>
         Agregar cliente
       </h1>
@@ -137,7 +137,7 @@ const Form = () => {
                 <Field
                   as='textarea'
                   type='text'
-                  placeholder='Observaiones de la última llamada'
+                  placeholder='Notas adicionales que quiera registrar'
                   id='notes'
                   name='notes'
                   className='input-field'
