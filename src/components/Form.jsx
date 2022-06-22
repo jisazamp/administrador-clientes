@@ -1,8 +1,11 @@
 import { Formik, Form as FormikForm, Field } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import Error from './Error';
 
 const Form = () => {
+  const navigate = useNavigate();
+
   const newClientSchema = Yup.object().shape({
     username: Yup.string()
       .min(3, 'El nombre es muy corto')
@@ -18,6 +21,24 @@ const Form = () => {
       .typeError('Ingrese un número de contacto válido'),
   });
 
+  const handleClientSubmit = async (values, resetForm) => {
+    const url = 'http://localhost:4000/clients';
+    try {
+      await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      resetForm();
+      navigate('/clients');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className='mt-10 px-5 py-10 rounded-md shadow-lg border md:w-3/4 mx-auto'>
       <h1 className='text-gray-600 font-bold text-xl uppercase text-center'>
@@ -31,10 +52,12 @@ const Form = () => {
           phone: '',
           notes: '',
         }}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values, { resetForm }) =>
+          handleClientSubmit(values, resetForm)
+        }
         validationSchema={newClientSchema}
       >
-        {({ errors, touched }) => {
+        {({ errors, touched, values }) => {
           return (
             <FormikForm>
               <div className='mt-4'>

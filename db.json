@@ -1,0 +1,28 @@
+{
+  "clients": [
+    {
+      "username": "Juan Isaza",
+      "company": "UPB",
+      "email": "juan@mail.com",
+      "phone": "1112233",
+      "notes": "Este es el primer registro",
+      "id": 1
+    },
+    {
+      "username": "Otro Isaza",
+      "company": "UPB",
+      "email": "juan@mail.com",
+      "phone": "111222333",
+      "notes": "Bueno, este es para comprobar que el server se reinicia",
+      "id": 2
+    },
+    {
+      "username": "Salchipapa 2",
+      "company": "UPB",
+      "email": "salchipapa@papas.com",
+      "phone": "123124",
+      "notes": "",
+      "id": 3
+    }
+  ]
+}
