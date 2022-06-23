@@ -2,8 +2,9 @@ import { Formik, Form as FormikForm, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import Error from './Error';
+import PropTypes from 'prop-types';
 
-const Form = () => {
+const Form = ({ client }) => {
   const navigate = useNavigate();
 
   const newClientSchema = Yup.object().shape({
@@ -24,6 +25,20 @@ const Form = () => {
   const handleClientSubmit = async (values, resetForm) => {
     const url = 'http://localhost:4000/clients';
     try {
+      // If editing
+      if (client?.username) {
+        await fetch(url + `/${client.id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(values),
+        });
+
+        resetForm();
+        navigate('/clients');
+        return;
+      }
+
+      // If new entry
       await fetch(url, {
         method: 'POST',
         headers: {
@@ -42,16 +57,17 @@ const Form = () => {
   return (
     <div className='mt-10 px-5 py-10 rounded-md shadow-lg border md:w-3/4 mx-auto'>
       <h1 className='text-gray-600 font-bold text-xl uppercase text-center'>
-        Agregar cliente
+        {client?.username ? 'Editar cliente' : 'Agregar cliente'}
       </h1>
       <Formik
         initialValues={{
-          username: '',
-          company: '',
-          email: '',
-          phone: '',
-          notes: '',
+          username: client?.username ?? '',
+          company: client?.company ?? '',
+          email: client?.email ?? '',
+          phone: client?.phone ?? '',
+          notes: client?.notes ?? '',
         }}
+        enableReinitialize={true}
         onSubmit={(values, { resetForm }) =>
           handleClientSubmit(values, resetForm)
         }
@@ -171,7 +187,7 @@ const Form = () => {
                 className='bg-sky-600 w-full mt-10 mb-3 py-2 rounded-sm text-white uppercase font-semibold hover:bg-sky-700 transition duration-200 ease-in
             cursor-pointer'
                 type='submit'
-                value='Agregar'
+                value={client?.username ? 'Editar' : 'Agregar'}
               />
             </FormikForm>
           );
@@ -179,6 +195,14 @@ const Form = () => {
       </Formik>
     </div>
   );
+};
+
+Form.propTypes = {
+  client: PropTypes.object,
+};
+
+Form.defaultProps = {
+  client: {},
 };
 
 export default Form;

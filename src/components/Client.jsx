@@ -73,7 +73,7 @@ const Client = ({ client, clients, setClients, setEditClient }) => {
 
         {/* Edit button */}
         <button
-          onClick={handleEditClient}
+          onClick={() => navigate(`edit/${id}`)}
           className='flex justify-center text-[#073b4c] px-2 items-center gap-2 bg-[#06d6a0] md:hover:bg-[#3e8b41] transition all duration-300 ease rounded-sm py-2'
         >
           <svg

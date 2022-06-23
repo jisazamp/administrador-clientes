@@ -5,7 +5,6 @@ const Home = () => {
   const [clients, setClients] = useState([]);
   const [filter, setFilter] = useState('');
   const [filteredClients, setFilteredClients] = useState([]);
-  const [editClient, setEditClient] = useState({});
 
   const fetchClients = async () => {
     try {
@@ -92,7 +91,6 @@ const Home = () => {
                   client={c}
                   clients={clients}
                   setClients={setClients}
-                  setEditClient={setEditClient}
                 />
               ))
             : clients.map((c) => (
@@ -101,7 +99,6 @@ const Home = () => {
                   client={c}
                   clients={clients}
                   setClients={setClients}
-                  setEditClient={setEditClient}
                 />
               ))}
         </tbody>

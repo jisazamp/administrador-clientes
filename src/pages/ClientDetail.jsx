@@ -46,7 +46,8 @@ const ClientDetail = () => {
         <div className='items-start'>
           <button
             onClick={() => navigate('/clients')}
-            className='mb-6 uppercase font-semibold py-3 bg-sky-700 px-3 rounded-md text-white text-md'
+            className='mb-6 uppercase font-semibold py-3 bg-gray-300 px-3 rounded-md text-gray-700 hover:bg-gray-400 hover:text-gray-100
+            transition duration-200 ease text-md'
           >
             Volver a clientes
           </button>
