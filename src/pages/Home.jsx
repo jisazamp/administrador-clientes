@@ -4,6 +4,7 @@ import Client from '../components/Client';
 const Home = () => {
   const [clients, setClients] = useState([]);
   const [filter, setFilter] = useState('');
+  const [filteredClients, setFilteredClients] = useState([]);
 
   const fetchClients = async () => {
     try {
@@ -27,16 +28,18 @@ const Home = () => {
   const handleFilterSubmit = (e) => {
     e.preventDefault();
 
+    const regex = new RegExp(filter, 'i');
+
     const newClients = clients.filter(
-      (client) => client.username.toLowerCase() === filter.toLowerCase()
+      (client) => client.username.search(regex) >= 0
     );
 
-    if (!filter) {
-      fetchClients();
+    if (newClients.length === 0) {
+      setFilteredClients([]);
       return;
     }
 
-    setClients(newClients);
+    setFilteredClients(newClients);
   };
 
   return (
@@ -87,9 +90,13 @@ const Home = () => {
           </tr>
         </thead>
         <tbody>
-          {clients.map((client) => (
-            <Client key={client.id} client={client} />
-          ))}
+          {filteredClients.length > 0
+            ? filteredClients.map((client) => (
+                <Client key={client.id} client={client} />
+              ))
+            : clients.map((client) => (
+                <Client key={client.id} client={client} />
+              ))}
         </tbody>
       </table>
     </div>
