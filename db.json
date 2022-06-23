@@ -1,0 +1,44 @@
+{
+  "clients": [
+    {
+      "username": "UPB",
+      "company": "Universidad Pontificia Bolivariana",
+      "email": "upb@upb.edu.co",
+      "phone": "3123124589",
+      "notes": "En la llamada de hoy vimos cómo editar esta información de manera dinámica.",
+      "id": 4
+    },
+    {
+      "username": "Desde MacOS",
+      "company": "Universidad Pontificia Bolivariana",
+      "email": "juan@mail.upb.edu.co",
+      "phone": "3003003510",
+      "notes": "Observaciones para esto",
+      "id": 5
+    },
+    {
+      "username": "Cristian Marrugo",
+      "company": "DIM",
+      "email": "cristian@dim.com",
+      "phone": "3104563050",
+      "notes": "Volvio al equipo de sus amores",
+      "id": 6
+    },
+    {
+      "username": "Juan Isaza ",
+      "company": "UPB",
+      "email": "juan@mail.com",
+      "phone": "123334443",
+      "notes": "Hola\n",
+      "id": 7
+    },
+    {
+      "username": "Uno Nuevo",
+      "company": "UPB",
+      "email": "nuevo@upb.edu.co",
+      "phone": "124213423",
+      "notes": "No se que es lo que quedo pendiente",
+      "id": 8
+    }
+  ]
+}
