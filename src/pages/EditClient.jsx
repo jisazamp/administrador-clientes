@@ -10,7 +10,7 @@ const EditClient = () => {
   useEffect(() => {
     const fetchClientDetail = async () => {
       try {
-        const response = await fetch(`http://localhost:4000/clients/${id}`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/${id}`);
 
         if (response.status === 404) {
           setClient({});

@@ -23,7 +23,7 @@ const Form = ({ client }) => {
   });
 
   const handleClientSubmit = async (values, resetForm) => {
-    const url = 'http://localhost:4000/clients';
+    const url = import.meta.env.VITE_API_URL;
     try {
       // If editing
       if (client?.username) {
