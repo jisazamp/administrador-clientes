@@ -8,7 +8,7 @@ const Home = () => {
 
   const fetchClients = async () => {
     try {
-      const url = 'http://localhost:4000/clients';
+      const url = import.meta.env.VITE_API_URL;
       const response = await fetch(url);
       const data = await response.json();
       setClients(data);
