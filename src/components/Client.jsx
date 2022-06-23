@@ -4,7 +4,7 @@ const Client = ({ client }) => {
   const { username, company, email, phone, notes, id } = client;
 
   return (
-    <tr className='border-b hover:bg-gray-100 transition duration-200 cursor-pointer'>
+    <tr className='border-b hover:bg-gray-100 transition duration-200'>
       <td className='p-3'>{username}</td>
       <td className='p-3'>
         <p>
@@ -56,7 +56,7 @@ const Client = ({ client }) => {
           </svg>
           <span className='hidden uppercase md:inline-block'>Editar</span>
         </button>
-        <button className='flex justify-center text-[#073b4c] px-2 items-center gap-2 bg-[#ef476f] hover:bg-[#9c0a02] transition duration-300 ease rounded-sm py-2'>
+        <button className='flex justify-center text-[#073b4c] px-2 items-center gap-2 bg-[#ef476f] hover:bg-[#bc3a58] transition duration-300 ease rounded-sm py-2'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-6 w-6'

@@ -39,6 +39,14 @@
       "phone": "3003003510",
       "notes": "Observaciones para esto",
       "id": 5
+    },
+    {
+      "username": "Cristian Marrugo",
+      "company": "DIM",
+      "email": "cristian@dim.com",
+      "phone": "3104563050",
+      "notes": "Volvio al equipo de sus amores",
+      "id": 6
     }
   ]
 }

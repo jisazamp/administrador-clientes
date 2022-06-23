@@ -21,18 +21,16 @@ const Home = () => {
     fetchClients();
   }, []);
 
-  const handleFilterChange = (e) => {
-    setFilter(e.target.value);
-  };
-
-  const handleFilterSubmit = (e) => {
-    e.preventDefault();
-
+  useEffect(() => {
+    // Case insensitive regular expression to look for name
     const regex = new RegExp(filter, 'i');
 
+    // Create a new array with the filtered clients
     const newClients = clients.filter(
       (client) => client.username.search(regex) >= 0
     );
+
+    console.log(newClients);
 
     if (newClients.length === 0) {
       setFilteredClients([]);
@@ -40,6 +38,10 @@ const Home = () => {
     }
 
     setFilteredClients(newClients);
+  }, [filter]);
+
+  const handleFilterChange = async (e) => {
+    setFilter(e.target.value);
   };
 
   return (
@@ -47,37 +49,28 @@ const Home = () => {
       <h1 className=' font-black text-4xl text-[#3829e0]'>Clientes</h1>
       <p className='mt-3'>Gestione y administre sus clientes</p>
 
-      <form
-        className='mt-2 mb-2 flex gap-2 justify-center'
-        onSubmit={handleFilterSubmit}
-      >
+      <form className='mt-2 mb-2 flex flex-col items-center gap-2 justify-center'>
         <input
-          className='py-2 px-2 w-2/3'
+          className='py-2 px-2 w-full md:w-2/3 mt-3 border-gray-500 border-2'
           type='text'
           value={filter}
           onChange={handleFilterChange}
           id='searchUsername'
           placeholder='Buscar usuario'
         />
+
         <button
-          className='py-3 px-5 rounded-sm bg-black text-white flex justify-center'
-          type='submit'
-          value='Buscar'
+          className={`${
+            filter ? 'block' : 'hidden'
+          } mb-2 mt-2 py-2 bg-sky-600 uppercase font-semibold 
+          text-white md:hover:bg-sky-700 transition duration-200 w-full md:w-2/3 rounded-sm`}
+          onClick={(e) => {
+            e.preventDefault();
+            setFilter('');
+            setFilteredClients([]);
+          }}
         >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-6 w-6'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-            strokeWidth={2}
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-            />
-          </svg>
+          Borrar filtros
         </button>
       </form>
       <table className='w-full mt-5 table-auto shadow bg-white'>
@@ -90,13 +83,9 @@ const Home = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredClients.length > 0
-            ? filteredClients.map((client) => (
-                <Client key={client.id} client={client} />
-              ))
-            : clients.map((client) => (
-                <Client key={client.id} client={client} />
-              ))}
+          {filter
+            ? filteredClients.map((c) => <Client key={c.id} client={c} />)
+            : clients.map((c) => <Client key={c.id} client={c} />)}
         </tbody>
       </table>
     </div>
