@@ -1,10 +1,33 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
-const Client = ({ client }) => {
-  const { username, company, email, phone, notes, id } = client;
+const Client = ({ client, clients, setClients, setEditClient }) => {
+  const { username, company, email, phone, id } = client;
+  const navigate = useNavigate();
+
+  const handleClientDelete = async () => {
+    const confirmDelete = confirm(
+      '¿Está seguro que desea eliminar este registro?'
+    );
+
+    if (!confirmDelete) return;
+
+    await fetch(`http://localhost:4000/clients/${id}`, {
+      method: 'DELETE',
+    });
+
+    const newClients = clients.filter((c) => c.id !== client.id);
+    setClients(newClients);
+    setEditClient({});
+  };
+
+  const handleEditClient = () => {
+    setEditClient(client);
+  };
 
   return (
     <tr className='border-b hover:bg-gray-100 transition duration-200'>
+      {/* User info */}
       <td className='p-3'>{username}</td>
       <td className='p-3'>
         <p>
@@ -15,9 +38,17 @@ const Client = ({ client }) => {
           <span className='text-gray-800 uppercase font-bold'>Tel</span> {phone}
         </p>
       </td>
+
+      {/* Company */}
       <td className='p-3'>{company}</td>
+
+      {/* Actions */}
       <td className='p-3 flex flex-col gap-1'>
-        <button className='flex justify-center text-[#073b4c] px-2 items-center gap-2 bg-[#ffd166] md:hover:bg-[#d3ab4f] transition all duration-300 ease rounded-sm py-2'>
+        {/* View button */}
+        <button
+          onClick={() => navigate(`/clients/${id}`)}
+          className='flex justify-center text-[#073b4c] px-2 items-center gap-2 bg-[#ffd166] md:hover:bg-[#d3ab4f] transition all duration-300 ease rounded-sm py-2'
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-6 w-6'
@@ -39,7 +70,12 @@ const Client = ({ client }) => {
           </svg>
           <span className='hidden uppercase md:inline-block'>Ver</span>
         </button>
-        <button className='flex justify-center text-[#073b4c] px-2 items-center gap-2 bg-[#06d6a0] md:hover:bg-[#3e8b41] transition all duration-300 ease rounded-sm py-2'>
+
+        {/* Edit button */}
+        <button
+          onClick={handleEditClient}
+          className='flex justify-center text-[#073b4c] px-2 items-center gap-2 bg-[#06d6a0] md:hover:bg-[#3e8b41] transition all duration-300 ease rounded-sm py-2'
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-6 w-6'
@@ -56,7 +92,12 @@ const Client = ({ client }) => {
           </svg>
           <span className='hidden uppercase md:inline-block'>Editar</span>
         </button>
-        <button className='flex justify-center text-[#073b4c] px-2 items-center gap-2 bg-[#ef476f] hover:bg-[#bc3a58] transition duration-300 ease rounded-sm py-2'>
+
+        {/* Delete button */}
+        <button
+          onClick={handleClientDelete}
+          className='flex justify-center text-[#073b4c] px-2 items-center gap-2 bg-[#ef476f] hover:bg-[#bc3a58] transition duration-300 ease rounded-sm py-2'
+        >
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='h-6 w-6'
@@ -80,6 +121,8 @@ const Client = ({ client }) => {
 
 Client.propTypes = {
   client: PropTypes.object.isRequired,
+  clients: PropTypes.array,
+  setClients: PropTypes.func,
 };
 
 export default Client;

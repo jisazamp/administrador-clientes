@@ -1,22 +1,6 @@
 {
   "clients": [
     {
-      "username": "Juan Isaza",
-      "company": "UPB",
-      "email": "juan@mail.com",
-      "phone": "3100000000",
-      "notes": "Este es el primer registro",
-      "id": 1
-    },
-    {
-      "username": "Otro Isaza",
-      "company": "UPB",
-      "email": "juan@mail.com",
-      "phone": "3100000001",
-      "notes": "Bueno, este es para comprobar que el server se reinicia",
-      "id": 2
-    },
-    {
       "username": "Salchipapa 2",
       "company": "UPB",
       "email": "salchipapa@papas.com",
@@ -47,6 +31,14 @@
       "phone": "3104563050",
       "notes": "Volvio al equipo de sus amores",
       "id": 6
+    },
+    {
+      "username": "Juan Isaza ",
+      "company": "UPB",
+      "email": "juan@mail.com",
+      "phone": "123334443",
+      "notes": "Hola\n",
+      "id": 7
     }
   ]
 }

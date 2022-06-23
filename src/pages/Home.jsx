@@ -5,6 +5,7 @@ const Home = () => {
   const [clients, setClients] = useState([]);
   const [filter, setFilter] = useState('');
   const [filteredClients, setFilteredClients] = useState([]);
+  const [editClient, setEditClient] = useState({});
 
   const fetchClients = async () => {
     try {
@@ -30,8 +31,6 @@ const Home = () => {
       (client) => client.username.search(regex) >= 0
     );
 
-    console.log(newClients);
-
     if (newClients.length === 0) {
       setFilteredClients([]);
       return;
@@ -50,15 +49,17 @@ const Home = () => {
       <p className='mt-3'>Gestione y administre sus clientes</p>
 
       <form className='mt-2 mb-2 flex flex-col items-center gap-2 justify-center'>
+        {/* Filter search box */}
         <input
           className='py-2 px-2 w-full md:w-2/3 mt-3 border-gray-500 border-2'
           type='text'
           value={filter}
           onChange={handleFilterChange}
           id='searchUsername'
-          placeholder='Buscar usuario'
+          placeholder='Buscar por nombres...'
         />
 
+        {/* Reset filters button */}
         <button
           className={`${
             filter ? 'block' : 'hidden'
@@ -73,6 +74,7 @@ const Home = () => {
           Borrar filtros
         </button>
       </form>
+
       <table className='w-full mt-5 table-auto shadow bg-white'>
         <thead className='text-white bg-blue-900'>
           <tr>
@@ -84,8 +86,24 @@ const Home = () => {
         </thead>
         <tbody>
           {filter
-            ? filteredClients.map((c) => <Client key={c.id} client={c} />)
-            : clients.map((c) => <Client key={c.id} client={c} />)}
+            ? filteredClients.map((c) => (
+                <Client
+                  key={c.id}
+                  client={c}
+                  clients={clients}
+                  setClients={setClients}
+                  setEditClient={setEditClient}
+                />
+              ))
+            : clients.map((c) => (
+                <Client
+                  key={c.id}
+                  client={c}
+                  clients={clients}
+                  setClients={setClients}
+                  setEditClient={setEditClient}
+                />
+              ))}
         </tbody>
       </table>
     </div>
